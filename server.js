@@ -1,19 +1,21 @@
 const express = require("express");
 const app = express();
 PORT = process.env.PORT || 3000;
+//Routes
+const playerRoute = require("./routes/playersRoute")
+// const teamRoute = require("./routes/teamRoute")
+// const OrgRoute = require("./routes/OrgRoute")
+
+
+
+//middleware
+app.use(express.urlencoded())
+app.use("/api/player",playerRoute)
+// app.use("/api/team", teamRoute )
+// app.use("/api/org", OrgRoute)
 
 
 app.get("/",(req,res)=>{
-    console.log("")
-})
-app.post("/",(req,res)=>{
-    console.log("")
-})
-app.delete("/",(req,res)=>{
-    console.log("")
-})
-app.put("/",(req,res)=>{
-    console.log("")
 })
 
 
