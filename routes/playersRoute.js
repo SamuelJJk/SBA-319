@@ -5,40 +5,37 @@ const Player = require("../models/player");
 
 //Read
 router.get("/",(req,res)=>{
-    res.json(Player)
+    res.json()
 })
 router.get("/:id",(req,res)=>{
     id = req.params.id
-    res.json(id)
+    const player = Player.findByID(id)
+    res.json(player)
 })
-//Create 
-// router.post("/",(req,res)=>{
-//     const newPlayer = {
-//         name: req.body.name,
-//         jersey: req.body.jersey,
-//         team: req.body.team
-//     }
-//     if (!newPlayer.name || !newPlayer.jersey || !newPlayer.team){
-//         return res.status(400).json({msg: "please enter all the keys" })
-//     }
-//     req.json(player)
-// })
+//Create *
 router.post("/", async(req,res)=>{
     const name = req.body.name;
     const jersey = req.body.jersey;
     const team = req.body.team;
-
-    const player = await Player.create({
+    console.log(req.body)
+    const player = Player.create({
         name: name,
         jersey: jersey,
         team: team,
     })
-    res.json({player:player})
+    
+    res.json(player)
+})
+//update
+router.put("/:id",(req,res)=>{
+    id = req.params.id
+    const player = Player.findByID(id)
+    res.json(player)
 })
 
-
-// router.delete("/api/player",(req,res)=>{
-//     res.send(player)
-// })
+//delete
+router.delete("/",(req,res)=>{
+    res.send(Player)
+})
 
 module.exports = router;
